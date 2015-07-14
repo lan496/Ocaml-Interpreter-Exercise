@@ -14,7 +14,7 @@ rule main = parse
   [' ' '\009' '\012' '\n']+     { main lexbuf }
 
 | "-"? ['0'-'9']+
-    { Parser.INTV (int_of_string (Lexing.lexeme lexbuf)) }
+  { Parser.INTV (int_of_string (Lexing.lexeme lexbuf)) }
 
 | "(" { Parser.LPAREN }
 | ")" { Parser.RPAREN }
@@ -22,6 +22,9 @@ rule main = parse
 | "+" { Parser.PLUS }
 | "*" { Parser.MULT }
 | "<" { Parser.LT }
+| "&&" { Parser.ANDAND }
+| "||" { Parser.OROR }
+
 
 | ['a'-'z'] ['a'-'z' '0'-'9' '_' '\'']*
     { let id = Lexing.lexeme lexbuf in
